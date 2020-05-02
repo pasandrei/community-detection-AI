@@ -1,7 +1,3 @@
-//
-// Created by Ale on 5/2/2020.
-//
-
 #ifndef COMMUNITY_DETECTION_AI_GRAPH_H
 #define COMMUNITY_DETECTION_AI_GRAPH_H
 
