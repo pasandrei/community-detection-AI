@@ -35,3 +35,6 @@ void Graph::print_graph() const {
     }
 }
 
+const std::vector<int> &Graph::operator[](const int index) const {
+	return adjacency_list_[index];
+}

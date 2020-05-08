@@ -18,6 +18,8 @@ public:
     const std::vector<std::vector<int>> &get_adjacency_list() const;
 
     void print_graph() const;
+
+	const std::vector<int> &operator[](int index) const; // Overload the access operator
 };
 
 #endif
