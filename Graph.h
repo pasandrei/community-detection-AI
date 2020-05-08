@@ -11,6 +11,8 @@ private:
     std::vector<std::vector<int>> adjacency_list_;
 
 public:
+	Graph();
+
     Graph(const std::string& file_name, const std::string& graph_type);
 
     const std::vector<std::vector<int>> &get_adjacency_list() const;

@@ -1,5 +1,9 @@
 #include "Graph.h"
 
+Graph::Graph() {
+	adjacency_list_ = {};
+}
+
 Graph::Graph(const std::string& file_name, const std::string& graph_type) {
     std::ifstream file(file_name);
     int nodes, edges, current_node, current_neighbour;
