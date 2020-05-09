@@ -25,8 +25,8 @@ Graph::Graph(const std::string &file_name, const std::string &graph_type) {
     read_adjacency_list_from_file(file_name, graph_type);
 }
 
-const std::vector<std::vector<int>> &Graph::get_adjacency_list() const {
-    return adjacency_list_;
+int Graph::size() const {
+    return adjacency_list_.size();
 }
 
 void Graph::print_graph() const {
