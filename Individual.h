@@ -7,9 +7,9 @@
 
 class Individual {
 private:
-    std::vector<int> communities_division_;
+    std::vector<int> chosen_neighbour_vector_;
 
-    void generate_communities_division(const Graph &Graph);
+    void generate_neighbour_vector(const Graph &Graph);
 
 public:
     explicit Individual(const Graph &graph);
