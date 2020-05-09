@@ -10,6 +10,8 @@ class Graph {
 private:
     std::vector<std::vector<int>> adjacency_list_;
 
+    void read_adjacency_list_from_file(const std::string &file_name, const std::string &graph_type);
+
 public:
 	Graph();
 
