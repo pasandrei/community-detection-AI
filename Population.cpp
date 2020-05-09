@@ -13,7 +13,6 @@ Population::Population(int no_individuals, const Graph &graph) {
 
 std::ostream &operator<<(std::ostream &os, const Population &population) {
     for (const Individual &individual : population.population_vector_) {
-        os << "individual: " << "\n";
         os << individual << "\n";
     }
 

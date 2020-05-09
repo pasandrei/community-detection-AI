@@ -29,7 +29,6 @@ std::ostream &operator<<(std::ostream &os, const Individual &individual) {
     for (int i : individual.chosen_neighbour_vector_) {
         os << i << " ";
     }
-    os << "\n";
 
     return os;
 }
