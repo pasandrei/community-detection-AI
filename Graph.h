@@ -14,9 +14,10 @@ private:
 
 public:
     Graph();
+
     Graph(const std::string &file_name, const std::string &graph_type);
 
-    const std::vector<std::vector<int>> &get_adjacency_list() const;
+    int size() const;
 
     void print_graph() const;
 
