@@ -9,7 +9,7 @@ class Population {
 private:
     std::vector<Individual> population_vector_;
 
-    void generate_individuals(int no_individuals, const std::vector<std::vector<int>> &adjacency_list);
+    void generate_individuals(int no_individuals, const Graph &graph);
 
 public:
     Population(int no_individuals, const Graph &graph);

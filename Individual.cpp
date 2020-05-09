@@ -1,13 +1,13 @@
 #include <vector>
 #include "Individual.h"
 
-void Individual::generate_communities_division(const std::vector<std::vector<int>> &adjacency_list) {
-    int no_nodes = adjacency_list.size();
+void Individual::generate_communities_division(const Graph &graph) {
+    int no_nodes = graph.size();
 
     communities_division_.resize(no_nodes);
 
     for (int i = 0; i < no_nodes; i++) {
-        std::vector<int> current_node_neighbours = adjacency_list[i];
+        std::vector<int> current_node_neighbours = graph[i];
         int no_neighbours = current_node_neighbours.size();
 
         if (no_neighbours > 0) {
@@ -21,8 +21,8 @@ void Individual::generate_communities_division(const std::vector<std::vector<int
     }
 }
 
-Individual::Individual(const std::vector<std::vector<int>> &adjacency_list) {
-    generate_communities_division(adjacency_list);
+Individual::Individual(const Graph &graph) {
+    generate_communities_division(graph);
 }
 
 std::ostream &operator<<(std::ostream &os, const Individual &individual) {

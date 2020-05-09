@@ -9,10 +9,10 @@ class Individual {
 private:
     std::vector<int> communities_division_;
 
-    void generate_communities_division(const std::vector<std::vector<int>> &adjacency_list);
+    void generate_communities_division(const Graph &Graph);
 
 public:
-    explicit Individual(const std::vector<std::vector<int>> &adjacency_list);
+    explicit Individual(const Graph &graph);
 
     friend std::ostream &operator<<(std::ostream &os, const Individual &individual); // cout << individual;
 };
