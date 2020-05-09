@@ -13,15 +13,14 @@ private:
     void read_adjacency_list_from_file(const std::string &file_name, const std::string &graph_type);
 
 public:
-	Graph();
-
-    Graph(const std::string& file_name, const std::string& graph_type);
+    Graph();
+    Graph(const std::string &file_name, const std::string &graph_type);
 
     const std::vector<std::vector<int>> &get_adjacency_list() const;
 
     void print_graph() const;
 
-	const std::vector<int> &operator[](int index) const; // Overload the access operator
+    const std::vector<int> &operator[](int index) const; // Overload the access operator
 };
 
 #endif
