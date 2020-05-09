@@ -1,13 +1,13 @@
 #include "Graph.h"
 
-Graph::Graph(const std::string& file_name, const std::string& graph_type) {
+void Graph::read_adjacency_list_from_file(const std::string &file_name, const std::string &graph_type) {
     std::ifstream file(file_name);
-    int nodes, edges, current_node, current_neighbour;
 
-    file >> nodes >> edges;
+    int no_nodes, no_edges, current_node, current_neighbour;
+    file >> no_nodes >> no_edges;
 
-    adjacency_list_.resize(nodes);
-    for (int i = 0; i < edges; i++) {
+    adjacency_list_.resize(no_nodes);
+    for (int i = 0; i < no_edges; i++) {
         file >> current_node >> current_neighbour;
 
         adjacency_list_[current_node].push_back(current_neighbour);
@@ -17,7 +17,15 @@ Graph::Graph(const std::string& file_name, const std::string& graph_type) {
     }
 }
 
-const std::vector <std::vector<int>> &Graph::get_adjacency_list() const {
+Graph::Graph() {
+    adjacency_list_ = {};
+}
+
+Graph::Graph(const std::string &file_name, const std::string &graph_type) {
+    read_adjacency_list_from_file(file_name, graph_type);
+}
+
+const std::vector<std::vector<int>> &Graph::get_adjacency_list() const {
     return adjacency_list_;
 }
 
@@ -31,3 +39,6 @@ void Graph::print_graph() const {
     }
 }
 
+const std::vector<int> &Graph::operator[](const int index) const {
+    return adjacency_list_[index];
+}
