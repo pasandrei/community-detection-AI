@@ -10,7 +10,15 @@ int main() {
 
     Population population(no_individuals, graph);
 
-    std::cout << population;
+    Individual offspring(population[0], population[1]);
+
+    std::cout << offspring << "\n\n";
+
+    double mutation_probability = 0.02;
+
+    offspring.mutate(graph, mutation_probability);
+
+    std::cout << offspring;
 
     return 0;
 }
