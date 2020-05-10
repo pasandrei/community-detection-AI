@@ -9,6 +9,8 @@ class Individual {
 private:
     std::vector<int> chosen_neighbour_vector_;
 
+    double fitness_ = ((double) rand() / (RAND_MAX));
+
     void generate_neighbour_vector(const Graph &Graph);
 
 public:
@@ -23,6 +25,8 @@ public:
     int operator[](int index) const; // Overload the access operator
 
     void mutate(const Graph &graph, double mutation_probability);
+
+    double get_fitness() const;
 
 };
 

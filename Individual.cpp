@@ -1,4 +1,4 @@
-#include <vector>
+#include <random>
 #include "Individual.h"
 
 // locus based representation is used for an individual
@@ -76,4 +76,8 @@ void Individual::mutate(const Graph &graph, double mutation_probability) {
             chosen_neighbour_vector_[i] = new_neighbour;
         }
     }
+}
+
+double Individual::get_fitness() const {
+    return fitness_;
 }
