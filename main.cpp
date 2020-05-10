@@ -14,7 +14,7 @@ int main() {
 
     std::cout << offspring << "\n\n";
 
-    int mutation_probability = 2;
+    double mutation_probability = 0.02;
 
     offspring.mutate(graph, mutation_probability);
 

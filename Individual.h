@@ -4,7 +4,6 @@
 #include <vector>
 #include <cstdlib>
 #include "Graph.h"
-#include <ctime>
 
 class Individual {
 private:
@@ -23,7 +22,7 @@ public:
 
     int operator[](int index) const; // Overload the access operator
 
-    void mutate(const Graph &graph, int mutation_probabilty);
+    void mutate(const Graph &graph, double mutation_probability);
 
 };
 

@@ -34,7 +34,7 @@ Individual::Individual(const Individual &individual1, const Individual &individu
     int no_chromosomes = individual1.size();
 
     for (int i = 0; i < no_chromosomes; i++) {
-        int bit = rand() % 2;
+        int bit = rand() & 1;
 
         if (bit == 0) {
             chosen_neighbour_vector_.push_back(individual1[i]);
@@ -63,7 +63,7 @@ int Individual::operator[](const int index) const {
 // mutate each chromosome of the individual with a given probability;
 // for each chromosome, a random new neighbour is selected
 // and assigned as the new allele value of that chromosome
-void Individual::mutate(const Graph &graph, int mutation_probability) {
+void Individual::mutate(const Graph &graph, double mutation_probability) {
     for (int i = 0; i < chosen_neighbour_vector_.size(); i++) {
         double current_mutation_probability = ((double) rand() / (RAND_MAX));
 
