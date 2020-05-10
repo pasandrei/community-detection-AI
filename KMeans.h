@@ -19,18 +19,18 @@ private:
 
     std::vector<int> compute_random_centroids(std::vector<int> &centroids);
 
-    std::vector<std::vector<int>> compute_clusters(const std::vector<int> &representatives);
+    std::vector<std::vector<int>> compute_clusters(const std::vector<int> &centroids);
 
     std::vector<int> breadth_first_search(const std::vector<int> &start_nodes);
 
     std::vector<int> get_centroids();
 
-    int get_cluster_center(const std::vector<int> &cluster);
+    int get_cluster_centroid(const std::vector<int> &cluster);
 
     int breadth_first_search_distance(int start_node);
 
 public:
-    KMeans(Graph &graph, int nr_clusters);
+    KMeans(Graph &graph, int no_clusters);
 
     void step();
 };
