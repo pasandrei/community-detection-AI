@@ -15,6 +15,8 @@ public:
     Population(int no_individuals, const Graph &graph);
 
     friend std::ostream &operator<<(std::ostream &os, const Population &population); // cout << population;
+
+    const Individual &operator[](int index) const; // Overload the access operator
 };
 
 #endif

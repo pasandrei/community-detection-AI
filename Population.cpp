@@ -19,3 +19,7 @@ std::ostream &operator<<(std::ostream &os, const Population &population) {
     return os;
 }
 
+const Individual &Population::operator[](int index) const {
+    return population_vector_[index];
+}
+
