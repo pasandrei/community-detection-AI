@@ -5,14 +5,10 @@
 
 class Evaluator {
 private:
-    int no_edges_;
     Graph graph_;
-    std::vector<std::vector<int>> adjacency_matrix_;
 
 public:
     explicit Evaluator(const Graph &graph);
-
-    Evaluator();
 
     double evaluate(const std::vector<std::vector<int>> &clusters) const;
 
