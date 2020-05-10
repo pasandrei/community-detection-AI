@@ -2,6 +2,7 @@
 #define COMMUNITY_DETECTION_AI_KMEANS_H
 
 #include <queue>
+#include <chrono>
 #include "Graph.h"
 
 class KMeans {
@@ -33,6 +34,8 @@ public:
     KMeans(Graph &graph, int no_clusters);
 
     void step();
+
+    const std::vector<std::vector<int>> &get_clusters() const;
 };
 
 

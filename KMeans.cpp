@@ -38,7 +38,8 @@ std::vector<int> KMeans::compute_random_centroids(std::vector<int> &centroids) {
         centroids.push_back(i);
     }
 
-    std::shuffle(centroids.begin(), centroids.end(), std::mt19937(std::random_device()()));
+    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    std::shuffle(centroids.begin(), centroids.end(), std::default_random_engine(seed));
 
     centroids.resize(no_clusters_);
 }
@@ -156,4 +157,8 @@ int KMeans::breadth_first_search_distance(int start_node) {
 
     // current_distance will be the distance to the node that was last visited
     return current_distance;
+}
+
+const std::vector<std::vector<int>> &KMeans::get_clusters() const {
+    return clusters_;
 }
