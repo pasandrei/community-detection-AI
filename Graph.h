@@ -11,7 +11,7 @@ private:
     std::vector<std::vector<int>> adjacency_list_, adjacency_matrix_;
     int no_edges_ = 0;
 
-    void read_adjacency_list_from_file(const std::string &file_name, const std::string &graph_type);
+    void read_adjacency_list_and_matrix(const std::string &file_name, const std::string &graph_type);
 
 public:
     Graph();

@@ -1,6 +1,8 @@
 #include "Graph.h"
 
-void Graph::read_adjacency_list_from_file(const std::string &file_name, const std::string &graph_type) {
+// ========== PRIVATE METHODS ==========
+
+void Graph::read_adjacency_list_and_matrix(const std::string &file_name, const std::string &graph_type) {
     std::ifstream file(file_name);
 
     int no_nodes, current_node, current_neighbour;
@@ -26,13 +28,15 @@ void Graph::read_adjacency_list_from_file(const std::string &file_name, const st
     }
 }
 
+// ========== PUBLIC METHODS ==========
+
 Graph::Graph() {
     no_edges_ = 0;
     adjacency_list_ = {};
 }
 
 Graph::Graph(const std::string &file_name, const std::string &graph_type) {
-    read_adjacency_list_from_file(file_name, graph_type);
+    read_adjacency_list_and_matrix(file_name, graph_type);
 }
 
 int Graph::size() const {
