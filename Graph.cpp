@@ -5,8 +5,8 @@
 void Graph::read_adjacency_list_and_matrix(const std::string &file_name, const std::string &graph_type) {
     std::ifstream file(file_name);
 
-    int no_nodes, current_node, current_neighbour;
-    file >> no_nodes >> no_edges_;
+    int no_nodes, current_node, current_neighbour, indexing;
+    file >> no_nodes >> no_edges_ >> indexing;
 
     adjacency_list_.resize(no_nodes);
     adjacency_matrix_.resize(no_nodes);
@@ -17,6 +17,9 @@ void Graph::read_adjacency_list_and_matrix(const std::string &file_name, const s
 
     for (int i = 0; i < no_edges_; i++) {
         file >> current_node >> current_neighbour;
+
+        current_node -= indexing;
+        current_neighbour -= indexing;
 
         adjacency_matrix_[current_node][current_neighbour]++;
         adjacency_list_[current_node].push_back(current_neighbour);
