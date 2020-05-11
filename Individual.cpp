@@ -1,4 +1,3 @@
-#include <vector>
 #include "Individual.h"
 
 // locus based representation is used for an individual
@@ -60,6 +59,10 @@ int Individual::operator[](const int index) const {
     return chosen_neighbour_vector_[index];
 }
 
+bool Individual::operator<(const Individual &other_individual) const {
+    return fitness_ < other_individual.fitness_;
+}
+
 // mutate each chromosome of the individual with a given probability;
 // for each chromosome, a random new neighbour is selected
 // and assigned as the new allele value of that chromosome
@@ -76,4 +79,16 @@ void Individual::mutate(const Graph &graph, double mutation_probability) {
             chosen_neighbour_vector_[i] = new_neighbour;
         }
     }
+}
+
+double Individual::get_fitness() const {
+    return fitness_;
+}
+
+const std::vector<int> &Individual::get_chosen_neighbour_vector() const {
+    return chosen_neighbour_vector_;
+}
+
+bool Individual::operator!=(const Individual &other_individual) const {
+    return chosen_neighbour_vector_ != other_individual.chosen_neighbour_vector_;
 }
