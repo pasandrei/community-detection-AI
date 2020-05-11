@@ -48,12 +48,6 @@ void Population::generate_offsprings() {
         int parent1_index = select_parent();
         int parent2_index = select_parent();
 
-        /* In order not to get stuck into an infinite loop an additional check has to be made
-         * so that we could guarantee that the individuals selected are different as much as possible
-         * We continue generating individuals with different representations as long as the sorted vector
-         * indicates that there are still different individuals
-         * The loop stops when there are not different individuals anymore
-         */
         while (parent1_index == parent2_index) {
             parent1_index = select_parent();
             parent2_index = select_parent();
