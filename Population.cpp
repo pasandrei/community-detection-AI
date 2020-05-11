@@ -2,14 +2,16 @@
 
 void Population::generate_individuals(int no_individuals, const Graph &graph) {
     for (int i = 0; i < no_individuals; i++) {
-        Individual individual(graph);
+        Individual individual(graph, evaluator_);
         population_vector_.push_back(individual);
     }
 }
 
-Population::Population(int no_individuals, const Graph &graph, double mutation_probability) {
+Population::Population(int no_individuals, const Graph &graph, double mutation_probability,
+                       const Evaluator &evaluator) {
     graph_ = graph;
     mutation_probability_ = mutation_probability;
+    evaluator_ = evaluator;
 
     generate_individuals(no_individuals, graph);
 }
@@ -56,14 +58,14 @@ void Population::generate_offsprings() {
         Individual parent1 = population_vector_[parent1_index];
         Individual parent2 = population_vector_[parent2_index];
 
-        Individual offspring(parent1, parent2);
+        Individual offspring(parent1, parent2, evaluator_);
 
         offspring.mutate(graph_, mutation_probability_);
 
         offsprings.push_back(offspring);
     }
 
-    for (Individual offspring : offsprings) {
+    for (Individual &offspring : offsprings) {
         population_vector_.push_back(offspring);
     }
 }
