@@ -54,10 +54,7 @@ void Population::generate_offsprings() {
          * indicates that there are still different individuals
          * The loop stops when there are not different individuals anymore
          */
-        while (parent1_index ==
-               parent2_index &&
-               population_vector_[0] != population_vector_[population_vector_.size() - 1]) {
-
+        while (parent1_index == parent2_index) {
             parent1_index = select_parent();
             parent2_index = select_parent();
         }
