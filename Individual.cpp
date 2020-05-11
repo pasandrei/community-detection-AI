@@ -124,6 +124,8 @@ void Individual::create_graph(Graph &graph) {
 
             new_edge.first = chosen_neighbour_vector_[i];
             new_edge.first = i;
+
+            edges_list.push_back(new_edge);
         }
     }
 
@@ -143,6 +145,8 @@ std::vector<std::vector<int>> Individual::get_clusters() {
     std::vector<std::vector<int>> clusters;
 
     for (int current_node : chosen_neighbour_vector_) {
+        if (visited_nodes[current_node]) continue;
+
         std::vector<int> cluster = breadth_first_search(current_node, graph, visited_nodes);
 
         clusters.push_back(cluster);
@@ -174,6 +178,10 @@ std::vector<int> Individual::breadth_first_search(int node, const Graph &graph, 
     }
 
     return cluster;
+}
+
+Individual::Individual() {
+    fitness_ = 0;
 }
 
 

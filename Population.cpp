@@ -44,8 +44,6 @@ void Population::generate_offsprings() {
 
     std::vector<Individual> offsprings;
 
-    std::sort(population_vector_.begin(), population_vector_.end());
-
     for (int i = 0; i < population_vector_.size(); i++) {
         int parent1_index = select_parent();
         int parent2_index = select_parent();
@@ -79,12 +77,7 @@ void Population::generate_next_generation() {
     std::vector<Individual> next_generation;
 
     std::sort(population_vector_.begin(), population_vector_.end());
-
     std::reverse(population_vector_.begin(), population_vector_.end());
 
-    for (int i = 0; i < population_vector_.size() / 2; i++) {
-        next_generation.push_back(population_vector_[i]);
-    }
-
-    population_vector_ = next_generation;
+    population_vector_.resize(population_vector_.size()/2);
 }

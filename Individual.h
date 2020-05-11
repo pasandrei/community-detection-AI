@@ -22,6 +22,8 @@ private:
 
 
 public:
+    Individual();
+
     Individual(const Graph &graph, const Evaluator &evaluator);
 
     Individual(const Individual &individual1, const Individual &individual2, const Evaluator &evaluator);

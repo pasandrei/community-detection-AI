@@ -5,8 +5,8 @@
 int main() {
     std::string file_name = "facebook_combined.txt", graph_type = "undirected";
     int no_individuals = 1000;
-    double mutation_probability = 0.02;
-    int no_generations = 20;
+    double mutation_probability = 0.05;
+    int no_generations = 1000;
 
     Graph graph(file_name, graph_type);
 

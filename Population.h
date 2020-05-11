@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <random>
-#include<algorithm>
+#include <algorithm>
 #include "Graph.h"
 #include "Individual.h"
 
