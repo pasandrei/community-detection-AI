@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <random>
-#include<algorithm>
+#include <algorithm>
 #include "Graph.h"
 #include "Individual.h"
 
@@ -13,12 +13,14 @@ private:
 
     Graph graph_;
 
+    Evaluator evaluator_;
+
     double mutation_probability_;
 
     void generate_individuals(int no_individuals, const Graph &graph);
 
 public:
-    Population(int no_individuals, const Graph &graph, double mutation_probability);
+    Population(int no_individuals, const Graph &graph, double mutation_probability, const Evaluator &evaluator);
 
     friend std::ostream &operator<<(std::ostream &os, const Population &population); // cout << population;
 

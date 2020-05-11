@@ -1,5 +1,9 @@
 #include "Evaluator.h"
 
+Evaluator::Evaluator() {
+    graph_ = {};
+}
+
 Evaluator::Evaluator(const Graph &graph) {
     // This constructor takes a Graph and creates the Evaluator functor
 

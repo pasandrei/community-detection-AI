@@ -8,6 +8,8 @@ private:
     Graph graph_;
 
 public:
+    Evaluator();
+
     explicit Evaluator(const Graph &graph);
 
     double evaluate(const std::vector<std::vector<int>> &clusters) const;
