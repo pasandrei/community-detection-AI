@@ -13,6 +13,7 @@ Evaluator::Evaluator(const Graph &graph) {
 double Evaluator::evaluate(const std::vector<std::vector<int>> &clusters) const {
     double fitness = 0;
 
+    std::vector<std::vector<int>> adj = graph_.get_adjacency_matrix();
     for (auto &cluster:clusters) {
         int inside_cluster_edges = 0, total_edges_to_cluster = 0;
 
@@ -23,7 +24,7 @@ double Evaluator::evaluate(const std::vector<std::vector<int>> &clusters) const 
             for (int j = i; j < cluster.size(); ++j) {
                 int node2 = cluster[j];
 
-                if (graph_.get_adjacency_matrix()[node1][node2] == 1) {
+                if (adj[node1][node2] == 1) {
                     // We count each edge twice because the edges are undirected
                     inside_cluster_edges += 2;
                 }
