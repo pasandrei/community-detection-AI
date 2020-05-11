@@ -4,20 +4,29 @@
 #include <vector>
 #include <random>
 #include <cstdlib>
+#include <queue>
 #include "Graph.h"
+#include "Evaluator.h"
 
 class Individual {
 private:
     std::vector<int> chosen_neighbour_vector_;
 
-    double fitness_ = ((double) rand() / (RAND_MAX));
+    std::string graph_type_;
+
+    double fitness_;
 
     void generate_neighbour_vector(const Graph &Graph);
 
-public:
-    explicit Individual(const Graph &graph);
+    std::vector<int> breadth_first_search(int node, const Graph &graph, std::vector<bool> &visited_nodes);
 
-    Individual(const Individual &individual1, const Individual &individual2);
+
+public:
+    Individual();
+
+    Individual(const Graph &graph, const Evaluator &evaluator);
+
+    Individual(const Individual &individual1, const Individual &individual2, const Evaluator &evaluator);
 
     friend std::ostream &operator<<(std::ostream &os, const Individual &individual); // cout << individual;
 
@@ -34,6 +43,13 @@ public:
     const std::vector<int> &get_chosen_neighbour_vector() const;
 
     bool operator!=(const Individual &other_individual) const;
+
+    void create_graph(Graph &graph);
+
+    const std::string &get_graph_type() const;
+
+    std::vector<std::vector<int>> get_clusters();
+
 };
 
 #endif

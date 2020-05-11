@@ -36,21 +36,13 @@ Graph::Graph() {
 }
 
 Graph::Graph(const std::string &file_name, const std::string &graph_type) {
+    graph_type_ = graph_type;
+
     read_adjacency_list_and_matrix(file_name, graph_type);
 }
 
 int Graph::size() const {
     return adjacency_list_.size();
-}
-
-void Graph::print_graph() const {
-    for (int i = 0; i < adjacency_list_.size(); i++) {
-        std::cout << "neighbours for node " << i << ": ";
-        for (int j : adjacency_list_[i]) {
-            std::cout << j << ", ";
-        }
-        std::cout << "\n";
-    }
 }
 
 const std::vector<int> &Graph::operator[](const int index) const {
@@ -63,4 +55,19 @@ const std::vector<std::vector<int>> &Graph::get_adjacency_matrix() const {
 
 int Graph::get_no_edges() const {
     return no_edges_;
+}
+
+const std::string &Graph::get_graph_type() const {
+    return graph_type_;
+}
+
+Graph::Graph(const std::vector<std::pair<int, int>> &edges_list, int no_nodes) {
+    adjacency_list_.resize(no_nodes);
+
+    for (auto edge : edges_list) {
+        int node = edge.first;
+        int neighbour = edge.second;
+
+        adjacency_list_[node].push_back(neighbour);
+    }
 }
