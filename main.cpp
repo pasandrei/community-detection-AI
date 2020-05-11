@@ -4,21 +4,22 @@
 
 int main() {
     std::string file_name = "facebook_combined.txt", graph_type = "undirected";
-    int no_individuals = 10;
+    int no_individuals = 100;
+    double mutation_probability = 0.02;
+    int no_generations = 20;
 
     Graph graph(file_name, graph_type);
 
-    Population population(no_individuals, graph);
+    Population population(no_individuals, graph, mutation_probability);
 
-    Individual offspring(population[0], population[1]);
+    for (int i = 0; i < no_generations; i++) {
+        population.generate_offsprings();
+        population.generate_next_generation();
+    }
 
-    std::cout << offspring << "\n\n";
+    Individual best_individual = population[0];
 
-    double mutation_probability = 0.02;
-
-    offspring.mutate(graph, mutation_probability);
-
-    std::cout << offspring;
+    std::cout << "best fitness: " << best_individual.get_fitness();
 
     return 0;
 }
