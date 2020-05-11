@@ -28,7 +28,7 @@ void KMeans::step() {
 }
 
 // ========== Private methods ==========
-std::vector<int> KMeans::compute_random_centroids(std::vector<int> &centroids) {
+void KMeans::compute_random_centroids(std::vector<int> &centroids) {
     /* We compute no_clusters_ centroids by generating a random permutation
      * of the node indices. I used this method to avoid the collision problem
      * caused by randomly generating no_clusters_ distinct numbers.

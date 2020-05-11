@@ -18,7 +18,7 @@ private:
     std::vector<std::vector<int>> clusters_;
     std::vector<int> nodes_to_community_id_;
 
-    std::vector<int> compute_random_centroids(std::vector<int> &centroids);
+    void compute_random_centroids(std::vector<int> &centroids);
 
     std::vector<std::vector<int>> compute_clusters(const std::vector<int> &centroids);
 
