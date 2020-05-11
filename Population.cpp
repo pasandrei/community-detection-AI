@@ -26,18 +26,12 @@ const Individual &Population::operator[](int index) const {
     return population_vector_[index];
 }
 
-Individual Population::generate_individual() {
+Individual Population::select_individual(const std::vector<double> &cumulative_ascending_probabilities) {
     /* This method is used to create a parent for the next generation of offsprings
      *  or an individual for the next generation using the wheel algorithm
      *  which operates with the partial sums of the probabilities
      *  of the individuals from the populations
      */
-
-    std::vector<double> individuals_probabilities;
-    std::vector<double> cumulative_ascending_probabilities;
-
-    calculate_individuals_probabilities(individuals_probabilities);
-    calculate_cumulative_ascending_probabilities(individuals_probabilities, cumulative_ascending_probabilities);
 
     double random_probability = ((double) rand() / (RAND_MAX));
 
@@ -60,7 +54,7 @@ void Population::calculate_individuals_probabilities(std::vector<double> &indivi
     double population_fitness = calculate_population_fitness();
 
     for (Individual individual : population_vector_) {
-        double individual_probability = individual.get_fitness()/population_fitness;
+        double individual_probability = individual.get_fitness() / population_fitness;
 
         individuals_probabilities.push_back(individual_probability);
     }
@@ -69,16 +63,17 @@ void Population::calculate_individuals_probabilities(std::vector<double> &indivi
 double Population::calculate_population_fitness() {
     // This method sums and returns the fitness values of the individuals from the population
 
-    double sum = 0;
+    double population_fitness = 0;
 
     for (Individual individual : population_vector_) {
-        sum += individual.get_fitness();
+        population_fitness += individual.get_fitness();
     }
 
-    return sum;
+    return population_fitness;
 }
 
-void Population::calculate_cumulative_ascending_probabilities(const std::vector<double> &individuals_probabilities, std::vector<double> &cumulative_ascending_probabilities) {
+void Population::calculate_cumulative_ascending_probabilities(const std::vector<double> &individuals_probabilities,
+                                                              std::vector<double> &cumulative_ascending_probabilities) {
     /* This method is used to calculate the cumulative ascending probabilities corresponding to the fitness
      * values of each individual from the population
      */
@@ -92,16 +87,33 @@ void Population::calculate_cumulative_ascending_probabilities(const std::vector<
     }
 }
 
-void Population::generate_offsprings() {
+void Population::generate_offsprings(const std::vector<double> &cumulative_ascending_probabilities) {
     /* Ths method creates a number of offsprings equal to the number of
      * individuals in the population, apply mutation on each on them with
      * a given probability and and the resulting offspring to the population_vector_
      */
+
     std::vector<Individual> offsprings;
 
+    std::sort(population_vector_.begin(), population_vector_.end());
+
     for (int i = 0; i < population_vector_.size(); i++) {
-        Individual parent1 = generate_individual();
-        Individual parent2 = generate_individual();
+        Individual parent1 = select_individual(cumulative_ascending_probabilities);
+        Individual parent2 = select_individual(cumulative_ascending_probabilities);
+
+        /* In order not to get stuck into an infinite loop an additional check has to be made
+         * so that we could guarantee that the individuals selected are different as much as possible
+         * We continue generating individuals with different representations as long as the sorted vector
+         * indicates that there are still different individuals
+         * The loop stops when there are not different individuals anymore
+         */
+        while (parent1.get_chosen_neighbour_vector() ==
+               parent2.get_chosen_neighbour_vector() &&
+               population_vector_[0] != population_vector_[population_vector_.size() - 1]) {
+
+            parent1 = select_individual(cumulative_ascending_probabilities);
+            parent2 = select_individual(cumulative_ascending_probabilities);
+        }
 
         Individual offspring(parent1, parent2);
 
@@ -115,7 +127,7 @@ void Population::generate_offsprings() {
     }
 }
 
-void Population::generate_next_generation() {
+void Population::generate_next_generation(const std::vector<double> &cumulative_ascending_probabilities) {
     /*
      * This method selects the next generation of individuals using the wheel
      * algorithm for proportionate selection implemented inside the
@@ -123,8 +135,8 @@ void Population::generate_next_generation() {
      */
     std::vector<Individual> next_generation;
 
-    for (int i = 0; i < population_vector_.size()/2; i++) {
-        Individual individual = generate_individual();
+    for (int i = 0; i < population_vector_.size() / 2; i++) {
+        Individual individual = select_individual(cumulative_ascending_probabilities);
 
         next_generation.push_back(individual);
     }

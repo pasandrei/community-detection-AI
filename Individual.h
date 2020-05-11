@@ -2,6 +2,7 @@
 #define COMMUNITY_DETECTION_AI_INDIVIDUAL_H
 
 #include <vector>
+#include <random>
 #include <cstdlib>
 #include "Graph.h"
 
@@ -26,8 +27,13 @@ public:
 
     void mutate(const Graph &graph, double mutation_probability);
 
+    bool operator<(const Individual &other_individual) const;
+
     double get_fitness() const;
 
+    const std::vector<int> &get_chosen_neighbour_vector() const;
+
+    bool operator!=(const Individual &other_individual) const;
 };
 
 #endif

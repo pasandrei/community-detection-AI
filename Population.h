@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <random>
+#include<algorithm>
 #include "Graph.h"
 #include "Individual.h"
 
@@ -23,17 +24,19 @@ public:
 
     const Individual &operator[](int index) const; // Overload the access operator
 
-    Individual generate_individual();
+    Individual select_individual(const std::vector<double> &cumulative_ascending_probabilities);
 
     void calculate_individuals_probabilities(std::vector<double> &individuals_probabilities);
 
     double calculate_population_fitness();
 
-    void calculate_cumulative_ascending_probabilities(const std::vector<double> &individuals_probabilities, std::vector<double> &cumulative_ascending_probabilities);
+    void calculate_cumulative_ascending_probabilities(
+            const std::vector<double> &individuals_probabilities,
+            std::vector<double> &cumulative_ascending_probabilities);
 
-    void generate_offsprings();
+    void generate_offsprings(const std::vector<double> &cumulative_ascending_probabilities);
 
-    void generate_next_generation();
+    void generate_next_generation(const std::vector<double> &cumulative_ascending_probabilities);
 };
 
 #endif
