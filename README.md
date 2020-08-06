@@ -1,7 +1,3 @@
-# community-detection-AI
-
-Artificial Intelligence
-
 # **Community Detection**
 
 # Evolutionary Algorithms vs K-Means
